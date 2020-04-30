@@ -17,6 +17,13 @@ for version in "${!versions[@]}"; do
     git clean -fdx
     echo "${version} -> ${versions[$version]}"
     echo ${versions[$version]} > SOURCE
+    curl -o vtiger.tar.gz -sL "${versions[$version]}"
+    tar -xzf vtiger.tar.gz
+    cd vtigercrm
+    tar -cvzf files.tar.gz .
+    cd ..
+    tar -xzf vtigercrm/files.tar.gz
+    rm -fr vtigercrm
     git add .
     git commit -am "Update version ${version}"
     git pull --no-edit
