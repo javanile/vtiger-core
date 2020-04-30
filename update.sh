@@ -21,12 +21,13 @@ for version in "${!versions[@]}"; do
     echo "-> Extracting..."
     tar -xzf vtiger.tar.gz
     cd vtigercrm
-    tar -czf files.tar.gz .
+    tar -czf ../files.tar.gz .
     cd ..
-    tar -xzf vtigercrm/files.tar.gz
+    tar -xzf files.tar.gz
     echo "-> Cleaning..."
     rm -fr vtigercrm/
     rm vtiger.tar.gz
+    rm files.tar.gz
     echo "-> Committing..."
     git add .
     git commit -am "Update version ${version}"
