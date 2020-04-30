@@ -17,7 +17,7 @@ for version in "${!versions[@]}"; do
     git clean -fdx
     echo "====[ ${version} ]===="
     echo "-> Downloading..."
-    curl -o vtiger.tar.gz -sL# "${download_files}${versions[$version]}"
+    curl -o vtiger.tar.gz -L# "${download_files}${versions[$version]}"
     echo "-> Extracting..."
     tar -xzf vtiger.tar.gz
     cd vtigercrm
