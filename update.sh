@@ -14,7 +14,7 @@ git push
 
 for version in "${!versions[@]}"; do
     echo "======[ ${version} ]======"
-    git checkout -B "v${version}" "4d2e80d4c82a84fecb6293b9df8589e04f08d9db"
+    git checkout -B "v${version}" "2e7db593df0a9b755489c36db8fb6c706252bf3d"
     git clean -fdx
     echo "-> Downloading..."
     curl -o vtiger.tar.gz -L# "${download_files}${versions[$version]}"
@@ -32,7 +32,9 @@ for version in "${!versions[@]}"; do
     git add .
     git commit -am "Update version ${version}"
     git pull --no-edit origin blank
+    echo "-> Tagging..."
     git tag "${version}"
+    echo "-> Pushing..."
     git push --set-upstream origin "v${version}"
 done
 
