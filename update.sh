@@ -19,6 +19,7 @@ for version in "${!versions[@]}"; do
     echo ${versions[$version]} > SOURCE
     git add .
     git commit -am "Update version ${version}"
+    git pull
     git push --set-upstream origin "${version}"
 done
 
