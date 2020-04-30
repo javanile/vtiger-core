@@ -23,7 +23,7 @@ for version in "${!versions[@]}"; do
     tar -cvzf files.tar.gz .
     cd ..
     tar -xzf vtigercrm/files.tar.gz
-    rm -fr vtigercrm
+    rm -fr vtigercrm vtiger.tar.gz
     git add .
     git commit -am "Update version ${version}"
     git pull --no-edit
