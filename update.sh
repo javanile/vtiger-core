@@ -17,7 +17,7 @@ for version in "${!versions[@]}"; do
     git clean -fdx
     echo "${version} -> ${versions[$version]}"
     echo ${versions[$version]} > SOURCE
-    curl -o vtiger.tar.gz -L "${versions[$version]}"
+    curl -o vtiger.tar.gz -L "${download_files}${versions[$version]}"
     tar -xzf vtiger.tar.gz
     cd vtigercrm
     tar -cvzf files.tar.gz .
