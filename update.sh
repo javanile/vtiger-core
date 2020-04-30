@@ -13,7 +13,7 @@ git commit -am "Update at $(date)"
 git push
 
 for version in "${!versions[@]}"; do
-    git checkout -B "${version}" "372a78b32bc53ca813fa4e6a51e64473bc42aa46"
+    git checkout -B "${version}" "4d2e80d4c82a84fecb6293b9df8589e04f08d9db"
     git clean -fdx
     echo "${version} -> ${versions[$version]}"
     echo ${versions[$version]} > SOURCE
