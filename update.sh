@@ -16,15 +16,18 @@ for version in "${!versions[@]}"; do
     git checkout -B "${version}" "4d2e80d4c82a84fecb6293b9df8589e04f08d9db"
     git clean -fdx
     echo "====[ ${version} ]===="
-    echo "Dowload: ${download_files}${versions[$version]}"
-    curl -o vtiger.tar.gz -sL "${download_files}${versions[$version]}"
+    echo "-> Downloading..."
+    curl -o vtiger.tar.gz -sL# "${download_files}${versions[$version]}"
+    echo "-> Extracting..."
     tar -xzf vtiger.tar.gz
     cd vtigercrm
     tar -czf files.tar.gz .
     cd ..
     tar -xzf vtigercrm/files.tar.gz
+    echo "-> Cleaning..."
     rm -fr vtigercrm/
     rm vtiger.tar.gz
+    echo "-> Committing..."
     git add .
     git commit -am "Update version ${version}"
     git pull --no-edit
