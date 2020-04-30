@@ -13,5 +13,10 @@ git commit -am "Update at $(date)"
 git push
 
 for version in "${!versions[@]}"; do
+    git checkout -B ${version}
+    git clean -fdx
     echo "${version} -> ${versions[$version]}"
+    echo ${versions[$version]} > SOURCE
+    git commit -am "Update at $(date)"
+    git push
 done
