@@ -31,7 +31,7 @@ for version in "${!versions[@]}"; do
     echo "-> Committing..."
     git add .
     git commit -am "Update version ${version}"
-    git pull --no-edit origin "v${version}"
+    git pull --no-edit origin blank
     git tag "${version}"
     git push --set-upstream origin "v${version}"
 done
