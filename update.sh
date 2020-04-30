@@ -32,10 +32,11 @@ for version in "${!versions[@]}"; do
     git add .
     git commit -am "Update version ${version}"
     git pull --no-edit origin blank
-    echo "-> Tagging..."
-    git tag "${version}"
     echo "-> Pushing..."
     git push --set-upstream origin "v${version}"
+    echo "-> Tagging..."
+    git tag -fa "${version}" -m "${version}"
+    git push origin --tags
 done
 
 git checkout master
