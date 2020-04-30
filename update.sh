@@ -8,5 +8,5 @@ git commit -am "Update at $(date)"
 git push
 
 for version in "${!versions[@]}"; do
-    echo ${version} -> ${versions[$version]}
+    echo "${version} -> ${versions[$version]}"
 done
