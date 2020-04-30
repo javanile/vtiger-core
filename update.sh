@@ -13,9 +13,9 @@ git commit -am "Update at $(date)"
 git push
 
 for version in "${!versions[@]}"; do
-    git checkout -B "${version}" "4d2e80d4c82a84fecb6293b9df8589e04f08d9db"
+    echo "======[ ${version} ]======"
+    git checkout -B "v${version}" "4d2e80d4c82a84fecb6293b9df8589e04f08d9db"
     git clean -fdx
-    echo "====[ ${version} ]===="
     echo "-> Downloading..."
     curl -o vtiger.tar.gz -L# "${download_files}${versions[$version]}"
     echo "-> Extracting..."
@@ -33,7 +33,7 @@ for version in "${!versions[@]}"; do
     git commit -am "Update version ${version}"
     git pull --no-edit
     git tag "${version}"
-    git push --set-upstream origin "${version}"
+    git push --set-upstream origin "v${version}"
 done
 
 git checkout master
