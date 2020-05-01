@@ -28,13 +28,14 @@ for version in "${!versions[@]}"; do
   rm files.tar.gz
   echo "-> Updating..."
   cp ../composer.json.tpl ./composer.json
-  sed -e 's!%VERSION%!'"${version}"'!' -ri composer.json
+  sed -e 's!%VERSION%!'"${version}"'!g' -ri composer.json
   echo "-> Committing..."
   git add .
   git commit -am "Update version ${version}"
   echo "-> Pushing..."
-  git pull --no-edit origin "v${version}" && true
+  git pull --no-edit -X ours origin "v${version}" && true
   git push --set-upstream origin "v${version}"
+  git push origin --delete "v${version}"
   echo "-> Tagging..."
   git tag -fa "${version}" -m "${version}"
   git push origin --tags -f
