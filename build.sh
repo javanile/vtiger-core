@@ -2,7 +2,7 @@
 set -e
 
 git add .
-git commit -m "Updating all build"
+git commit -m "Updating all build" && true
 git push
 
 source versions.sh
