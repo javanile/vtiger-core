@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+git add .
+git commit -m "Updating all build"
+git push
+
 source versions.sh
 
 mkdir -p cache
