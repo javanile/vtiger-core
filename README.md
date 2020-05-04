@@ -1,1 +1,1 @@
-# vtiger-code-reference
+# vtiger core
