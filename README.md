@@ -17,3 +17,11 @@
   }
 }
 ```
+
+```json
+{
+  "require-dev": {
+    "javanile/vtiger-core": "7.1.0"
+  }
+}
+```
