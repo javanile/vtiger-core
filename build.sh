@@ -2,14 +2,14 @@
 set -e
 
 git add .
-git commit -m "Updating all build" && true
+git commit -am "Updating all build" && true
 git push
 
 source versions.sh
 
 rm -fr build
 mkdir -p cache
-git clone https://github.com/javanile/vtiger-core.git build && true
+git clone -b temp https://github.com/javanile/vtiger-core.git build && true
 
 for version in "${!versions[@]}"; do
   echo "======[ ${version} ]======"
