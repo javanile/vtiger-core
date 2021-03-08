@@ -7,6 +7,7 @@ git push
 
 source versions.sh
 
+rm -fr build
 mkdir -p cache
 git clone https://github.com/javanile/vtiger-core.git build && true
 
