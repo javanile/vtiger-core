@@ -24,7 +24,7 @@ for version in "${!versions[@]}"; do
   git clean -fdx
   echo "-> Extracting..."
   tar -xzf "../cache/${version}.tar.gz"
-  cd vtigercrm
+  cd vtigercrm || cd vtigerCRM
   tar -czf ../files.tar.gz .
   cd ..
   tar -xzf files.tar.gz
