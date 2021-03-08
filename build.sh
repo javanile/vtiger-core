@@ -29,7 +29,7 @@ for version in "${!versions[@]}"; do
   cd ..
   tar -xzf files.tar.gz
   echo "-> Cleaning..."
-  rm -fr vtigercrm/
+  rm -fr vtigercrm/ vtigerCRM/
   rm files.tar.gz
   echo "-> Updating..."
   cp ../composer.json.tpl ./composer.json
