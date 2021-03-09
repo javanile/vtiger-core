@@ -1,6 +1,6 @@
 # vtiger core
 
-![](https://img.shields.io/static/v1?style=flat&logo=php&label=packagist&message=javanile/vtiger-core&color=blue)
+[![javanile/vtiger-core](https://img.shields.io/static/v1?style=flat&logo=php&label=packagist&message=javanile/vtiger-core&color=blue)](https://packagist.org/packages/javanile/vtiger-core)
 
 ## Supported versions and respective tag links 
 
