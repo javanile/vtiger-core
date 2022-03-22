@@ -49,7 +49,6 @@ build_tag () {
     cd ../../..
     exit
   fi
-
   cd build
   local blank_hash=$(git rev-parse blank)
   git config credential.helper cache
@@ -57,21 +56,19 @@ build_tag () {
   git checkout -B "v${version}" "${blank_hash}"
   tar -xzf ../${package_archive}
 
-  exit
-
-  echo "-> Cleaning..."
-  rm -fr vtigercrm/ vtigerCRM/
-  rm files.tar.gz
   echo "-> Updating..."
   cp ../composer.json.tpl ./composer.json
   sed -e 's!%VERSION%!'"${version}"'!g' -ri composer.json
+
   echo "-> Committing..."
   git add .
   git commit -am "Update version ${version}"
+
   echo "-> Pushing..."
   git pull --no-edit -X ours origin "v${version}" && true
   git push --set-upstream origin "v${version}"
   git push origin --delete "v${version}"
+
   echo "-> Tagging..."
   git tag -fa "${version}" -m "${version}"
   git push origin --tags -f
