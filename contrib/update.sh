@@ -18,7 +18,7 @@ build_tag () {
   local version=$1
   local archive=$2
   echo "======[ ${version} ]======"
-  echo "-> Downloading..."
+  echo "-> Downloading... $archive"
   if [ "$archive" == *zip ]; then
     if [[ ! -f "cache/${version}.zip" ]]; then
       curl -o "cache/${version}.zip" -L# "${download_files}${archive}"
