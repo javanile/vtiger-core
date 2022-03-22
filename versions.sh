@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-download_files=http://sourceforge.net/projects/vtigercrm/files/
+download_url=http://sourceforge.net/projects/vtigercrm/files/
 
 declare -a versions
 versions=(

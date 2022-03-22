@@ -11,14 +11,15 @@ git push
 source versions.sh
 
 rm -fr build
-mkdir -p cache
+mkdir -p cache/download cache/package
 git clone --single-branch --branch build https://github.com/javanile/vtiger-core.git build && true
 
 build_tag () {
   local version=$1
   local archive=$2
   local is_zip=
-  local cache_archive=cache/${version}.tar.gz
+  local download_archive=cache/download/${version}.tar.gz
+  local package_archive=cache/package/${version}.tar.gz
   local tmp_dir=tmp/$version
   if [[ "$archive" == *zip ]]; then
     is_zip=1
@@ -27,8 +28,8 @@ build_tag () {
 
   echo "======[ ${version} ]======"
   echo "-> Downloading..."
-  if [[ ! -f "${cache_archive}" ]]; then
-    curl -o "${cache_archive}" -L# "${download_files}${archive}"
+  if [[ ! -f "${download_archive}" ]]; then
+    curl -o "${download_archive}" -L# "${download_url}${archive}"
   fi
   echo "-> Extracting..."
   [ -d "$tmp_dir" ] && rm -fr "$tmp_dir"
@@ -40,7 +41,7 @@ build_tag () {
     tar -xzf "../cache/${version}.tar.gz"
   fi
   cd vtigercrm || cd vtigerCRM
-  tar -czf ../${version}.tar.gz .
+  tar -czf ../../../${package_archive} .
   cd ../../..
   exit
 
