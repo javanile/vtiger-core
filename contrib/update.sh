@@ -1,8 +1,11 @@
 #!/bin/bash
 set -e
 
+update_tag=$1
+[ -z "$1" ] && update_message="Update all tags" || update_message="Updating tag $1"
+
 git add .
-git commit -am "Updating all build" && true
+git commit -am "$update_message" && true
 git push
 
 source versions.sh
@@ -11,7 +14,8 @@ rm -fr build
 mkdir -p cache
 git clone -b temp https://github.com/javanile/vtiger-core.git build && true
 
-for version in "${!versions[@]}"; do
+build_tag () {
+  local version=$1
   echo "======[ ${version} ]======"
   echo "-> Downloading..."
   if [[ ! -f "cache/${version}.tar.gz" ]]; then
@@ -45,4 +49,12 @@ for version in "${!versions[@]}"; do
   git tag -fa "${version}" -m "${version}"
   git push origin --tags -f
   cd ..
-done
+}
+
+if [ -z "$update_tag" ]; then
+  for version in "${!versions[@]}"; do
+    build_tag $version
+  done
+else
+  build_tag $update_tag
+fi
