@@ -12,7 +12,7 @@ source versions.sh
 
 rm -fr build
 mkdir -p cache/download cache/package
-git clone --branch blank https://github.com/javanile/vtiger-core.git build && true
+git clone --single-branch --branch blank https://github.com/javanile/vtiger-core.git build && true
 
 build_tag () {
   local version=$1
@@ -21,7 +21,6 @@ build_tag () {
   local download_archive=cache/download/${version}.tar.gz
   local package_archive=cache/package/${version}.tar.gz
   local tmp_dir=tmp/$version
-  local blank_hash=$(git rev-parse blank)
 
   if [[ "$archive" == *zip ]]; then
     is_zip=1
@@ -52,9 +51,9 @@ build_tag () {
   fi
 
   cd build
+  local blank_hash=$(git rev-parse blank)
   git config credential.helper cache
   git config credential.helper 'cache --timeout=3600'
-  git fetch "${blank_hash}"
   git checkout -B "v${version}" "${blank_hash}"
   tar -xzf ${package_archive}
 
