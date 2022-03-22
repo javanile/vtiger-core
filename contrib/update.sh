@@ -27,33 +27,36 @@ build_tag () {
   fi
 
   echo "======[ ${version} ]======"
+
   echo "-> Downloading..."
   if [[ ! -f "${download_archive}" ]]; then
     curl -o "${download_archive}" -L# "${download_url}${archive}"
   fi
+
   echo "-> Extracting..."
-  [ -d "$tmp_dir" ] && rm -fr "$tmp_dir"
-  mkdir -p "$tmp_dir"
-  cd "$tmp_dir"
-  if [ -n "${is_zip}" ]; then
-    unzip -q -o "../../${download_archive}"
-  else
-    tar -xzf "../cache/${version}.tar.gz"
+  if [[ ! -f "${package_archive}" ]]; then
+    [ -d "$tmp_dir" ] && rm -fr "$tmp_dir"
+    mkdir -p "$tmp_dir"
+    cd "$tmp_dir"
+    if [ -n "${is_zip}" ]; then
+      unzip -q -o "../../${download_archive}"
+    else
+      tar -xzf "../cache/${version}.tar.gz"
+    fi
+    cd vtigercrm || cd vtigerCRM
+    tar -czf ../../../${package_archive} .
+    cd ../../..
+    exit
   fi
-  cd vtigercrm || cd vtigerCRM
-  tar -czf ../../../${package_archive} .
-  cd ../../..
-  exit
 
   cd build
   git config credential.helper cache
   git config credential.helper 'cache --timeout=3600'
   git checkout -B "v${version}" "2e7db593df0a9b755489c36db8fb6c706252bf3d"
+  tar -xzf ${package_archive}
 
-  cd vtigercrm || cd vtigerCRM
-  tar -czf ../files.tar.gz .
-  cd ..
-  tar -xzf files.tar.gz
+  exit
+
   echo "-> Cleaning..."
   rm -fr vtigercrm/ vtigerCRM/
   rm files.tar.gz
