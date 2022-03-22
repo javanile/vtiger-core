@@ -5,7 +5,7 @@ download_files=http://sourceforge.net/projects/vtigercrm/files/
 
 declare -a versions
 versions=(
-  ["6.0.0"]=vtiger%20CRM%206.0.0/Core%20Product/vtigercrm6.0.0.tar.gz
+  "6.0.0=vtiger%20CRM%206.0.0/Core%20Product/vtigercrm6.0.0.tar.gz"
 )
 
 ## Supported versions

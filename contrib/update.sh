@@ -12,7 +12,7 @@ source versions.sh
 
 rm -fr build
 mkdir -p cache
-git clone --single-branch --branch temp https://github.com/javanile/vtiger-core.git build && true
+git clone --single-branch --branch build https://github.com/javanile/vtiger-core.git build && true
 
 build_tag () {
   local version=$1
@@ -51,10 +51,10 @@ build_tag () {
   cd ..
 }
 
-if [ -z "$update_tag" ]; then
-  for version in "${!versions[@]}"; do
-    build_tag $version
-  done
-else
-  build_tag $update_tag
-fi
+for version in "${!versions[@]}"; do
+  tag="${index%%=*}"
+  archive="${index##*=}"
+  if [ -z "$update_tag" ] || [ "$update_tag" = "$tag" ]; then
+    build_tag $tag $archive
+  fi
+done
