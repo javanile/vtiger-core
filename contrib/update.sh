@@ -12,7 +12,7 @@ source versions.sh
 
 rm -fr build
 mkdir -p cache
-git clone -b temp https://github.com/javanile/vtiger-core.git build && true
+git clone --single-branch --branch temp https://github.com/javanile/vtiger-core.git build && true
 
 build_tag () {
   local version=$1
