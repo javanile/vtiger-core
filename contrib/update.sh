@@ -51,7 +51,7 @@ build_tag () {
   cd ..
 }
 
-for version in "${!versions[@]}"; do
+for version in "${versions[@]}"; do
   tag="${version%%=*}"
   archive="${version##*=}"
   echo $tag
