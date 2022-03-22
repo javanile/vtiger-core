@@ -57,7 +57,7 @@ build_tag () {
   tar -xzf ../${package_archive}
 
   echo "-> Updating..."
-  cp ../composer.json.tpl ./composer.json
+  cp ../contrib/composer.json.tpl ./composer.json
   sed -e 's!%VERSION%!'"${version}"'!g' -ri composer.json
 
   echo "-> Committing..."
