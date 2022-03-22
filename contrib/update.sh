@@ -55,7 +55,7 @@ build_tag () {
   git config credential.helper cache
   git config credential.helper 'cache --timeout=3600'
   git checkout -B "v${version}" "${blank_hash}"
-  tar -xzf ${package_archive}
+  tar -xzf ../${package_archive}
 
   exit
 
