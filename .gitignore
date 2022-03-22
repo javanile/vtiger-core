@@ -2,4 +2,5 @@
 .vscode/
 cache/
 build/
+tmp/
 .pwd.var

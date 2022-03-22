@@ -39,7 +39,9 @@ build_tag () {
   else
     tar -xzf "../cache/${version}.tar.gz"
   fi
-  cd ../..
+  cd vtigercrm || cd vtigerCRM
+  tar -czf ../${version}.tar.gz .
+  cd ../../..
   exit
 
   cd build
