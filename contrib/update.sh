@@ -21,6 +21,10 @@ build_tag () {
   local download_archive=cache/download/${version}.tar.gz
   local package_archive=cache/package/${version}.tar.gz
   local tmp_dir=tmp/$version
+  local blank_hash=$(git rev-parse blank)
+
+  echo $blank_hash
+  exit
   if [[ "$archive" == *zip ]]; then
     is_zip=1
     cache_archive=cache/${version}.zip
