@@ -3,7 +3,7 @@ set -e
 
 download_files=http://sourceforge.net/projects/vtigercrm/files/
 
-declare -A versions
+declare -a versions
 versions=(
   ["6.0.0"]=vtiger%20CRM%206.0.0/Core%20Product/vtigercrm6.0.0.tar.gz
 )
