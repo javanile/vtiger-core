@@ -17,24 +17,36 @@ git clone --single-branch --branch build https://github.com/javanile/vtiger-core
 build_tag () {
   local version=$1
   local archive=$2
-  echo "======[ ${version} ]======"
-  echo "-> Downloading... $archive"
+  local is_zip=
+  local cache_archive=cache/${version}.tar.gz
+  local tmp_dir=tmp/$version
   if [[ "$archive" == *zip ]]; then
-    if [[ ! -f "cache/${version}.zip" ]]; then
-      curl -o "cache/${version}.zip" -L# "${download_files}${archive}"
-    fi
-  else
-    if [[ ! -f "cache/${version}.tar.gz" ]]; then
-      curl -o "cache/${version}.tar.gz" -L# "${download_files}${archive}"
-    fi
+    is_zip=1
+    cache_archive=cache/${version}.zip
   fi
+
+  echo "======[ ${version} ]======"
+  echo "-> Downloading..."
+  if [[ ! -f "${cache_archive}" ]]; then
+    curl -o "${cache_archive}" -L# "${download_files}${archive}"
+  fi
+  echo "-> Extracting..."
+  [ -d "$tmp_dir" ] && rm -fr "$tmp_dir"
+  mkdir -p "$tmp_dir"
+  cd "$tmp_dir"
+  if [ -n "${is_zip}" ]; then
+    unzip -o
+  else
+    tar -xzf "../cache/${version}.tar.gz"
+  fi
+  cd ../..
+  exit
+
   cd build
   git config credential.helper cache
   git config credential.helper 'cache --timeout=3600'
   git checkout -B "v${version}" "2e7db593df0a9b755489c36db8fb6c706252bf3d"
-  git clean -fdx
-  echo "-> Extracting..."
-  tar -xzf "../cache/${version}.tar.gz"
+
   cd vtigercrm || cd vtigerCRM
   tar -czf ../files.tar.gz .
   cd ..
