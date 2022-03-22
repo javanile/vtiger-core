@@ -35,7 +35,7 @@ build_tag () {
   mkdir -p "$tmp_dir"
   cd "$tmp_dir"
   if [ -n "${is_zip}" ]; then
-    unzip -so "../../${cache_archive}"
+    unzip -q -o "../../${cache_archive}"
   else
     tar -xzf "../cache/${version}.tar.gz"
   fi
