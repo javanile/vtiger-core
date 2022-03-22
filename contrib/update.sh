@@ -23,8 +23,6 @@ build_tag () {
   local tmp_dir=tmp/$version
   local blank_hash=$(git rev-parse blank)
 
-  echo $blank_hash
-  exit
   if [[ "$archive" == *zip ]]; then
     is_zip=1
     cache_archive=cache/${version}.zip
@@ -56,7 +54,7 @@ build_tag () {
   cd build
   git config credential.helper cache
   git config credential.helper 'cache --timeout=3600'
-  git checkout -B "v${version}" "2e7db593df0a9b755489c36db8fb6c706252bf3d"
+  git checkout -B "v${version}" "${blank_hash}"
   tar -xzf ${package_archive}
 
   exit
