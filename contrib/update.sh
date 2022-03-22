@@ -55,14 +55,14 @@ build_tag () {
   git config credential.helper 'cache --timeout=3600'
   git checkout -B "v${version}" "${blank_hash}"
   tar -xzf ../${package_archive}
+  git add .
+  git commit -am "Vtiger ${version}"
 
   echo "-> Updating..."
   cp ../contrib/composer.json.tpl ./composer.json
   sed -e 's!%VERSION%!'"${version}"'!g' -ri composer.json
-
-  echo "-> Committing..."
   git add .
-  git commit -am "Update version ${version}"
+  git commit -am "Package ${version}"
 
   echo "-> Pushing..."
   git pull --no-edit -X ours origin "v${version}" && true
