@@ -16,10 +16,17 @@ git clone --single-branch --branch build https://github.com/javanile/vtiger-core
 
 build_tag () {
   local version=$1
+  local archive=$2
   echo "======[ ${version} ]======"
   echo "-> Downloading..."
-  if [[ ! -f "cache/${version}.tar.gz" ]]; then
-    curl -o "cache/${version}.tar.gz" -L# "${download_files}${versions[$version]}"
+  if [ "$archive" = *"zip" ]; then
+    if [[ ! -f "cache/${version}.zip" ]]; then
+      curl -o "cache/${version}.zip" -L# "${download_files}${archive}"
+    fi
+  else
+    if [[ ! -f "cache/${version}.tar.gz" ]]; then
+      curl -o "cache/${version}.tar.gz" -L# "${download_files}${archive}"
+    fi
   fi
   cd build
   git config credential.helper cache
