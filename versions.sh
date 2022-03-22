@@ -6,6 +6,7 @@ download_files=http://sourceforge.net/projects/vtigercrm/files/
 declare -a versions
 versions=(
   "6.0.0=vtiger%20CRM%206.0.0/Core%20Product/vtigercrm6.0.0.tar.gz"
+  "1.0.0=vtiger%20CRM%20Release%20Archive/vtiger%20CRM%201.0/vtigercrm_source_1_0.zip"
 )
 
 ## Supported versions
