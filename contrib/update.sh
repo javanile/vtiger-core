@@ -52,8 +52,8 @@ build_tag () {
 }
 
 for version in "${!versions[@]}"; do
-  tag="${index%%=*}"
-  archive="${index##*=}"
+  tag="${version%%=*}"
+  archive="${version##*=}"
   echo $tag
   if [ -z "$update_tag" ] || [ "$update_tag" = "$tag" ]; then
     build_tag $tag $archive
