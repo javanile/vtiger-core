@@ -76,6 +76,7 @@ build_tag () {
   git checkout -b tmp
   git merge --ff-only --no-edit -X theirs "v${version}" && true
   git push origin --delete "v${version}"
+  git push origin tmp
   cd ..
 }
 
