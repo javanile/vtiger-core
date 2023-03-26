@@ -66,7 +66,7 @@ build_tag () {
   git commit -am "Package ${version}"
 
   echo "-> Pushing..."
-  git pull --no-edit -X ours origin "v${version}" && true
+  git pull --no-rebase --no-edit -X ours origin "v${version}" && true
   git push --set-upstream origin "v${version}"
 
   echo "-> Tagging..."
