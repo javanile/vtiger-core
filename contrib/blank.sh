@@ -1,6 +1,22 @@
 #!/usr/bin/env bash
 
-it checkout yourBranch
-git reset $(git merge-base master $(git branch --show-current))
+rm -fr blank
+git clone --single-branch --branch main https://github.com/javanile/vtiger-core.git blank && true
+
+cd blank
+
+## Create empty "blank" branch
+git push origin --delete blank
+git checkout --orphan blank
+git rm -rf .
 git add -A
-git commit -m "one commit on yourBranch"
+git commit --allow-empty -m "Initial commit"
+git push --set-upstream origin blank
+
+## Create empty "tmp" branch
+git push origin --delete tmp
+git checkout --orphan tmp
+git rm -rf .
+git add -A
+git commit --allow-empty -m "Initial commit"
+git push --set-upstream origin tmp

@@ -1,5 +1,8 @@
 
-.PHONY: build
+.PHONY: build blank
+
+blank:
+	@bash contrib/blank.sh
 
 build:
 	bash build.sh
