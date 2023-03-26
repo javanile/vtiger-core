@@ -73,6 +73,7 @@ build_tag () {
   git tag -fa "${version}" -m "${version}"
   git push origin --tags -f
 
+  echo "-> Cleaning..."
   git checkout -b tmp
   git pull --no-rebase --no-edit -X ours origin tmp && true
   git merge --no-edit -X theirs "v${version}" && true
