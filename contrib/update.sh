@@ -68,11 +68,14 @@ build_tag () {
   echo "-> Pushing..."
   git pull --no-edit -X ours origin "v${version}" && true
   git push --set-upstream origin "v${version}"
-  #git push origin --delete "v${version}"
 
   echo "-> Tagging..."
   git tag -fa "${version}" -m "${version}"
   git push origin --tags -f
+
+  git checkout tmp
+  git merge --no-edit -X theirs "origin/v${version}" && true
+  git push origin --delete "v${version}"
   cd ..
 }
 
