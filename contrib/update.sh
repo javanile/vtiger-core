@@ -75,7 +75,7 @@ build_tag () {
 
   echo "-> Cleaning..."
   git checkout -b tmp
-  git pull --no-rebase --no-edit -X ours origin tmp && true
+  git pull --no-rebase --allow-unrelated-histories --no-edit -X ours origin tmp && true
   git merge --no-edit -X theirs "v${version}" && true
   git push origin --delete "v${version}"
   git push origin tmp
