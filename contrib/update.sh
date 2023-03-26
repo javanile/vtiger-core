@@ -42,7 +42,7 @@ build_tag () {
     if [ -n "${is_zip}" ]; then
       unzip -q -o "../../${download_archive}"
     else
-      tar -xzf "../cache/${version}.tar.gz"
+      tar -xzf "../cache/download/${version}.tar.gz"
     fi
     cd vtigercrm || cd vtigerCRM
     tar -czf ../../../${package_archive} .
