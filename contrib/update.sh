@@ -73,8 +73,8 @@ build_tag () {
   git tag -fa "${version}" -m "${version}"
   git push origin --tags -f
 
-  git checkout tmp
-  git merge --ff-only --no-edit -X theirs "origin/v${version}" && true
+  git checkout -b tmp
+  git merge --ff-only --no-edit -X theirs "v${version}" && true
   git push origin --delete "v${version}"
   cd ..
 }
